@@ -11,6 +11,10 @@
 
     <artifactId>ccdn_search</artifactId>
 
+    <properties>
+        <elasticsearch.version>6.2.2</elasticsearch.version>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>com.chenchen</groupId>

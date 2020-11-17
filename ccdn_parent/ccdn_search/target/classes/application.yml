@@ -6,3 +6,4 @@ spring:
   data:
     elasticsearch:
       cluster-nodes: 123.56.120.185:9300
+      cluster-name:  my-application
