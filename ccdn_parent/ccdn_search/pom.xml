@@ -12,7 +12,7 @@
     <artifactId>ccdn_search</artifactId>
 
     <properties>
-        <elasticsearch.version>6.2.2</elasticsearch.version>
+        <elasticsearch.version>7.9.3</elasticsearch.version>
     </properties>
 
     <dependencies>
