@@ -1,0 +1,13 @@
+server: 
+  port: 9005
+spring: 
+  application:  
+    name: ccdn-gathering #指定服务名
+  datasource:  
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://123.56.120.185:3306/ccdn_gathering?characterEncoding=UTF8
+    username: root
+    password: 12345678
+  jpa: 
+    database: MySQL
+    show-sql: true
