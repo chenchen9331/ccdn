@@ -1,0 +1,13 @@
+server:
+  port: 9009
+spring:
+  application:
+    name: ccdn-ssm
+  rabbitmq:
+    host: 123.56.120.185
+aliyun:
+  sms:
+    accessKeyId: LTAI4G1QcrBL143EpTFPP31T
+    accessKeySecret: rWHkEF2ebJd7snTmRygcK3TYcfAwh3
+    template_code: SMS_205585155
+    sign_name: ABC商城

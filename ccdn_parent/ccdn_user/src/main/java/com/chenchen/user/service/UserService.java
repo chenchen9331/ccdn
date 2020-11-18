@@ -60,9 +60,7 @@ public class UserService {
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("mobile", mobile);
 		map.put("checkcode", checkcode);
-		rabbitTemplate.convertAndSend("sms", checkcode);
-		// 显示验证码（测试用）
-		System.out.println(checkcode);
+		rabbitTemplate.convertAndSend("sms", map);
 	}
 
 	/**
@@ -188,4 +186,33 @@ public class UserService {
 
 	}
 
+	/**
+	 * 用户注册
+	 * @param code
+	 * @param user
+	 */
+	public void regist(String code, User user) {
+
+		String checkcodeRedis = (String) redisTemplate.opsForValue().get("checkcode_" + user.getMobile());
+		if (checkcodeRedis.isEmpty()) {
+			throw new RuntimeException("请先获取手机验证码");
+		}
+		if(!code.equals(checkcodeRedis)) {
+			throw new RuntimeException("验证码不正确，请重新输入");
+		}
+		user.setId(idWorker.nextId() + "");
+		// 关注数
+		user.setFollowcount(0);
+		// 粉丝数
+		user.setFanscount(0);
+		// 在线时长
+		user.setOnline(0L);
+		// 注册日琦
+		user.setRegdate(new Date());
+		// 更新日期
+		user.setUpdatedate(new Date());
+		// 最后登录日琦
+		user.setLastdate(new Date());
+        userDao.save(user);
+	}
 }

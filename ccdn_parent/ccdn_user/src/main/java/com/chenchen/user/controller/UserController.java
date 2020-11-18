@@ -39,7 +39,19 @@ public class UserController {
         userService.sendSms(mobile);
         return new ResultEntity(StatusCode.OK, true, "发送成功");
 	}
-	
+
+	/**
+	 * 用户注册
+	 * @param code
+	 * @param user
+	 * @return
+	 */
+	@RequestMapping(value = "/register/{code}", method = RequestMethod.POST)
+	public ResultEntity rigister(@PathVariable("code") String code, @RequestBody User user) {
+        userService.regist(code, user);
+        return new ResultEntity(StatusCode.OK, true, "注册成功");
+	}
+
 	/**
 	 * 查询全部数据
 	 * @return
