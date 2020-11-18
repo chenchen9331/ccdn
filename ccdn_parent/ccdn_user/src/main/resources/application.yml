@@ -1,0 +1,17 @@
+server: 
+  port: 9008
+spring: 
+  application:  
+    name: ccdn-user #指定服务名
+  datasource:  
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://123.56.120.185:3306/ccdn_user?characterEncoding=UTF8
+    username: root
+    password: 12345678
+  jpa: 
+    database: MySQL
+    show-sql: true
+  redis:
+    host: 123.56.120.185
+  rabbitmq:
+    host: 123.56.120.185

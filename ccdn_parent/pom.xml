@@ -17,6 +17,7 @@
         <module>ccdn_gathering</module>
         <module>ccdn_spit</module>
         <module>ccdn_search</module>
+        <module>ccdn_user</module>
     </modules>
 
     <parent>
