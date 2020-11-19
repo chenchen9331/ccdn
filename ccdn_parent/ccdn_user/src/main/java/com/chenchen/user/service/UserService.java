@@ -9,9 +9,12 @@ import javax.persistence.criteria.Expression;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import javax.persistence.criteria.Selection;
+import javax.servlet.http.HttpServletRequest;
 
 import com.chenchen.common.entity.ResultEntity;
 import com.chenchen.common.util.IdWorker;
+import com.chenchen.common.util.JwtUtil;
+import io.jsonwebtoken.Claims;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,6 +53,12 @@ public class UserService {
 
     @Autowired
     private BCryptPasswordEncoder encoder;
+
+    @Autowired
+    private JwtUtil jwtUtil;
+
+    @Autowired
+    private HttpServletRequest request;
 
 	/**
 	 * 发送手机验证码
@@ -147,6 +156,10 @@ public class UserService {
 	 * @param id
 	 */
 	public void deleteById(String id) {
+		String roles = (String) request.getAttribute("claims_admin");
+		if (roles.isEmpty()) {
+			throw new RuntimeException("权限不足");
+		}
 		userDao.deleteById(id);
 	}
 

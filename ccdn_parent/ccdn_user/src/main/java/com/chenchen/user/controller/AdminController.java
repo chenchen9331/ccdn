@@ -1,10 +1,12 @@
 package com.chenchen.user.controller;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import com.chenchen.common.entity.PageResultEntity;
 import com.chenchen.common.entity.ResultEntity;
 import com.chenchen.common.entity.StatusCode;
+import com.chenchen.common.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -31,6 +33,8 @@ public class AdminController {
 	@Autowired
 	private AdminService adminService;
 
+	@Autowired
+	private JwtUtil jwtUtil;
 	/**
 	 * 管理员登陆
 	 * @param admin
@@ -42,7 +46,12 @@ public class AdminController {
 		if (adminLogin == null) {
 			return new ResultEntity(StatusCode.LOGINERROR, false, "登陆失败");
 		}
-		return new ResultEntity(StatusCode.OK, true, "登陆成功");
+		// jwt生成token,角色暂时写死
+		String token = jwtUtil.createJWT(adminLogin.getId(), adminLogin.getLoginname(), "admin");
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("token", token);
+		map.put("name", adminLogin.getLoginname());
+		return new ResultEntity(StatusCode.OK, true, "登陆成功", map);
 	}
 	
 	/**

@@ -15,3 +15,7 @@ spring:
     host: 123.56.120.185
   rabbitmq:
     host: 123.56.120.185
+jwt:
+  config:
+    key: ccdn
+    ttl: 3600000

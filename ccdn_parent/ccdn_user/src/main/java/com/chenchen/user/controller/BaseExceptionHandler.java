@@ -18,6 +18,6 @@ public class BaseExceptionHandler {
     @ResponseBody
     public ResultEntity error(Exception e){
         e.printStackTrace();        
-        return new ResultEntity(StatusCode.OK,true, "执行出错");
+        return new ResultEntity(StatusCode.ERROR,false, e.getMessage());
     }
 }

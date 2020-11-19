@@ -1,5 +1,6 @@
 package com.chenchen.qa;
 import com.chenchen.common.util.IdWorker;
+import com.chenchen.common.util.JwtUtil;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -19,5 +20,9 @@ public class QaApplication {
 	public IdWorker idWorkker(){
 		return new IdWorker(1, 1);
 	}
-	
+
+	@Bean
+	public JwtUtil jwtUtil() {
+		return new JwtUtil();
+	}
 }

@@ -5,6 +5,7 @@ import java.util.Map;
 import com.chenchen.common.entity.PageResultEntity;
 import com.chenchen.common.entity.ResultEntity;
 import com.chenchen.common.entity.StatusCode;
+import com.chenchen.common.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -17,6 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.chenchen.qa.pojo.Problem;
 import com.chenchen.qa.service.ProblemService;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * 问题Controller
  * @author chenchen
@@ -28,7 +31,9 @@ public class ProblemController {
 
 	@Autowired
 	private ProblemService problemService;
-	
+
+	@Autowired
+	private HttpServletRequest request;
 	
 	/**
 	 * 查询全部数据
@@ -79,6 +84,10 @@ public class ProblemController {
 	 */
 	@RequestMapping(method=RequestMethod.POST)
 	public ResultEntity add(@RequestBody Problem problem  ){
+		Object roles = request.getAttribute("claims_user");
+		if (roles == null || "".equals(roles)) {
+			return new ResultEntity(StatusCode.ACCESSERROR, false, "权限不足");
+		}
 		problemService.add(problem);
 		return new ResultEntity(StatusCode.OK,true,"增加成功");
 	}

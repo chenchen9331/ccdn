@@ -1,5 +1,6 @@
 package com.chenchen.user;
 import com.chenchen.common.util.IdWorker;
+import com.chenchen.common.util.JwtUtil;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -32,5 +33,14 @@ public class UserApplication {
 	@Bean
 	public BCryptPasswordEncoder bCryptPasswordEncoder() {
 		return new BCryptPasswordEncoder();
+	}
+
+	/**
+	 * jwt生成token
+	 * @return
+	 */
+	@Bean
+	public JwtUtil jwtUtil() {
+		return new JwtUtil();
 	}
 }
