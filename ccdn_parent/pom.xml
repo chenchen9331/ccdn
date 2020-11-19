@@ -18,6 +18,7 @@
         <module>ccdn_spit</module>
         <module>ccdn_search</module>
         <module>ccdn_user</module>
+        <module>ccdn_sms</module>
     </modules>
 
     <parent>
