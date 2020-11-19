@@ -7,6 +7,7 @@ import com.chenchen.common.entity.ResultEntity;
 import com.chenchen.common.entity.StatusCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -29,7 +30,20 @@ public class AdminController {
 
 	@Autowired
 	private AdminService adminService;
-	
+
+	/**
+	 * 管理员登陆
+	 * @param admin
+	 * @return
+	 */
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public ResultEntity login(@RequestBody Admin admin) {
+		Admin adminLogin = adminService.login(admin);
+		if (adminLogin == null) {
+			return new ResultEntity(StatusCode.LOGINERROR, false, "登陆失败");
+		}
+		return new ResultEntity(StatusCode.OK, true, "登陆成功");
+	}
 	
 	/**
 	 * 查询全部数据

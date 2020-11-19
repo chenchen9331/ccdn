@@ -47,9 +47,23 @@ public class UserController {
 	 * @return
 	 */
 	@RequestMapping(value = "/register/{code}", method = RequestMethod.POST)
-	public ResultEntity rigister(@PathVariable("code") String code, @RequestBody User user) {
+	public ResultEntity register(@PathVariable("code") String code, @RequestBody User user) {
         userService.regist(code, user);
         return new ResultEntity(StatusCode.OK, true, "注册成功");
+	}
+
+	/**
+	 * 用户登陆
+	 * @param user
+	 * @return
+	 */
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public ResultEntity login(@RequestBody User user) {
+		User userLogin = userService.login(user.getPassword(), user.getMobile());
+		if (userLogin == null) {
+			return new ResultEntity(StatusCode.LOGINERROR, false, "登陆失败");
+		}
+		return new ResultEntity(StatusCode.OK, true, "登陆成功");
 	}
 
 	/**

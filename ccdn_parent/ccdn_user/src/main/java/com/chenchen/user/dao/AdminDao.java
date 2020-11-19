@@ -9,5 +9,5 @@ import com.chenchen.user.pojo.Admin;
  * @author chenchen
  */
 public interface AdminDao extends JpaRepository<Admin,String>,JpaSpecificationExecutor<Admin>{
-	
+	Admin findByLoginname(String loginname);
 }

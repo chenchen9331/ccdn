@@ -20,6 +20,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 
@@ -47,6 +48,9 @@ public class UserService {
     @Autowired
     private RabbitTemplate rabbitTemplate;
 
+    @Autowired
+    private BCryptPasswordEncoder encoder;
+
 	/**
 	 * 发送手机验证码
 	 * @param mobile
@@ -60,7 +64,23 @@ public class UserService {
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("mobile", mobile);
 		map.put("checkcode", checkcode);
-		rabbitTemplate.convertAndSend("sms", map);
+		// rabbitTemplate.convertAndSend("sms", map);
+		//测试方便，暂时将验证码在控制台输出
+		System.out.println("验证码:" + checkcode);
+	}
+
+	/**
+	 * 用户登陆
+	 * @param password
+	 * @param mobile
+	 * @return
+	 */
+	public User login(String password, String mobile) {
+		User userByMobile = userDao.findByMobile(mobile);
+		if (userByMobile != null && encoder.matches(password, userByMobile.getPassword())) {
+			return userByMobile;
+		}
+		return null;
 	}
 
 	/**
@@ -201,6 +221,8 @@ public class UserService {
 			throw new RuntimeException("验证码不正确，请重新输入");
 		}
 		user.setId(idWorker.nextId() + "");
+		// 密码盐值加密
+		user.setPassword(encoder.encode(user.getPassword()));
 		// 关注数
 		user.setFollowcount(0);
 		// 粉丝数

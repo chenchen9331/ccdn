@@ -9,5 +9,5 @@ import com.chenchen.user.pojo.User;
  * @author chenchen
  */
 public interface UserDao extends JpaRepository<User,String>,JpaSpecificationExecutor<User>{
-	
+	User findByMobile(String mobile);
 }
