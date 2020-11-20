@@ -6,6 +6,7 @@ import com.chenchen.common.entity.PageResultEntity;
 import com.chenchen.common.entity.ResultEntity;
 import com.chenchen.common.entity.StatusCode;
 import com.chenchen.common.util.JwtUtil;
+import com.chenchen.qa.client.BaseClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -34,7 +35,17 @@ public class ProblemController {
 
 	@Autowired
 	private HttpServletRequest request;
-	
+
+	@Autowired
+	private BaseClient baseClient;
+
+	@RequestMapping(value = "/label/{labelId}", method = RequestMethod.GET)
+	public ResultEntity findByLabelId(@PathVariable("labelId") String labelId) {
+		ResultEntity result = baseClient.findLabelById(labelId);
+		return result;
+	}
+
+
 	/**
 	 * 查询全部数据
 	 * @return

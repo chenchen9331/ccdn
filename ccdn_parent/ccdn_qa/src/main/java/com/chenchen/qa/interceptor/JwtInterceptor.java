@@ -29,7 +29,7 @@ public class JwtInterceptor implements HandlerInterceptor {
      */
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         String header = request.getHeader("Authorization");
-        if (!header.isEmpty()) {
+        if (header != null && !"".equals(header)) {
             if (header.startsWith("Bearer ")) {
                 String token = header.substring(7);
                 try{
