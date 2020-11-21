@@ -1,4 +1,4 @@
-package com.chenchen.user.interceptor;
+package com.chenchen.friend.interceptor;
 
 import com.chenchen.common.util.JwtUtil;
 import io.jsonwebtoken.Claims;
@@ -36,10 +36,10 @@ public class JwtInterceptor implements HandlerInterceptor {
                     Claims claims = jwtUtil.parseJWT(token);
                     String roles = (String) claims.get("roles");
                     if (claims != null && "admin".equals(roles)) {
-                        request.setAttribute("claims_admin", roles);
+                        request.setAttribute("claims_admin", claims);
                     }
                     if (claims != null && "user".equals(roles)) {
-                        request.setAttribute("claims_user", roles);
+                        request.setAttribute("claims_user", claims);
                     }
                 } catch (Exception e) {
                     throw new RuntimeException("令牌有误！");

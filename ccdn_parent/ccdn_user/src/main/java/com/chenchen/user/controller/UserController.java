@@ -5,6 +5,7 @@ import java.util.Map;
 import com.chenchen.common.entity.PageResultEntity;
 import com.chenchen.common.entity.ResultEntity;
 import com.chenchen.common.entity.StatusCode;
+import com.chenchen.common.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -28,6 +29,9 @@ public class UserController {
 
 	@Autowired
 	private UserService userService;
+
+	@Autowired
+	private JwtUtil jwtUtil;
 
 	/**
 	 * 注册发送短信验证码
@@ -63,7 +67,9 @@ public class UserController {
 		if (userLogin == null) {
 			return new ResultEntity(StatusCode.LOGINERROR, false, "登陆失败");
 		}
-		return new ResultEntity(StatusCode.OK, true, "登陆成功");
+		String token = jwtUtil.createJWT(userLogin.getId(), userLogin.getNickname(), "user");
+
+		return new ResultEntity(StatusCode.OK, true, "登陆成功", token);
 	}
 
 	/**
@@ -74,7 +80,17 @@ public class UserController {
 	public ResultEntity findAll(){
 		return new ResultEntity(StatusCode.OK,true,"查询成功",userService.findAll());
 	}
-	
+
+	/**
+	 * 更新粉丝数和关注数
+	 * @param userid
+	 * @param friendid
+	 */
+	@RequestMapping(value = "/{userid}/{friendid}/{x}", method = RequestMethod.PUT)
+	public void updateFansAndFollow(@PathVariable("x") int x, @PathVariable("userid") String userid, @PathVariable("friendid") String friendid) {
+		userService.updateFansAndFollow(x, userid, friendid);
+	}
+
 	/**
 	 * 根据ID查询
 	 * @param id ID

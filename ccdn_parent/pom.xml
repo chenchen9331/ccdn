@@ -20,6 +20,7 @@
         <module>ccdn_user</module>
         <module>ccdn_sms</module>
         <module>ccdn_eureka</module>
+        <module>ccdn_friend</module>
     </modules>
 
     <parent>

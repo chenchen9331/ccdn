@@ -250,4 +250,14 @@ public class UserService {
 		user.setLastdate(new Date());
         userDao.save(user);
 	}
+
+	/**
+	 * 更新粉丝数和关注数
+	 * @param userid
+	 * @param friendid
+	 */
+	public void updateFansAndFollow(int x, String userid, String friendid) {
+		userDao.updateFans(x, friendid);
+		userDao.updateFollow(x, userid);
+	}
 }
