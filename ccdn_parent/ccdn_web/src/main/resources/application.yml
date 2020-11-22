@@ -1,0 +1,43 @@
+server:
+  port: 9012
+spring:
+  application:
+    name: ccdn-web
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:6868/eureka/
+  instance:
+    prefer-ip-address: true
+zuul:
+  routes:
+    ccdn-base:     # 基础模块
+      path: /base/**    # 配置网关请求规则
+      serviceId: ccdn-base    # 指定Eureka注册中心服务的id
+    ccdn-article:    # 文章模块
+      path: /article/**
+      serviceId: ccdn-article
+    ccdn-friend:     # 交友模块
+      path: /friend/**
+      serviceId: ccdn-friend
+    ccdn-gathering:    # 活动模块
+      path: /gathering/**
+      serviceId: ccdn-gathering
+    ccdn-qa:    # 问答模块
+      path: /qa/**
+      serviceId: ccdn-qa
+    ccdn-recruit:    # 招聘模块
+      path: /recruit/**
+      serviceId: /recruit/**
+    ccdn-search:    # 搜索模块
+      path: /search/**
+      serviceId: ccdn-search
+    ccdn-sms:    # 短信验证模块
+      path: /sms/**
+      serviceId: ccdn-sms
+    ccdn-spit:    # 吐槽模块
+      path: /spit/**
+      serviceId: ccdn-spit
+    ccdn-user:    # 用户模块
+      path: /user/**
+      serviceId: ccdn-user

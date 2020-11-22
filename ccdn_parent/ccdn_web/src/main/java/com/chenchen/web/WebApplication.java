@@ -1,18 +1,19 @@
-package com.chenchen.sms;
+package com.chenchen.web;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 
 /**
- * 短信验证监听微服务启动类
+ * spring cloud 前台网关启动类
  * @author chenchen
  */
 @SpringBootApplication
 @EnableEurekaClient
-public class SmsApplication {
-
+@EnableZuulProxy
+public class WebApplication {
     public static void main(String[] args) {
-        SpringApplication.run(SmsApplication.class, args);
+        SpringApplication.run(WebApplication.class, args);
     }
 }

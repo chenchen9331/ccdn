@@ -21,6 +21,8 @@
         <module>ccdn_sms</module>
         <module>ccdn_eureka</module>
         <module>ccdn_friend</module>
+        <module>ccdn_manager</module>
+        <module>ccdn_web</module>
     </modules>
 
     <parent>

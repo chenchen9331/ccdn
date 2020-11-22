@@ -9,3 +9,9 @@ spring:
       database: spitdb
   redis:
     host: 123.56.120.185
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:6868/eureka/
+  instance:
+    prefer-ip-address: true

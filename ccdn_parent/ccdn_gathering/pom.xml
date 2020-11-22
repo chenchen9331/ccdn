@@ -15,6 +15,10 @@
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 		</dependency>
+	  <dependency>
+		  <groupId>org.springframework.cloud</groupId>
+		  <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+	  </dependency>
 		<dependency>
 			<groupId>com.chenchen</groupId>
 			<artifactId>ccdn_common</artifactId>

@@ -11,3 +11,9 @@ aliyun:
     accessKeySecret: rWHkEF2ebJd7snTmRygcK3TYcfAwh3
     template_code: SMS_205585155
     sign_name: ABC商城
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:6868/eureka/
+  instance:
+    prefer-ip-address: true
