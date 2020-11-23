@@ -9,6 +9,9 @@ eureka:
       defaultZone: http://127.0.0.1:6868/eureka/
   instance:
     prefer-ip-address: true
+jwt:
+  config:
+    key: ccdn
 zuul:
   routes:
     ccdn-base:     # 基础模块

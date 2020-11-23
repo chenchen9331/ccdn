@@ -1,0 +1,17 @@
+server:
+  port: 12000
+spring:
+  application:
+    name: ccdn-config
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://gitee.com/Chen_chen9331/ccdn-dev.git
+  rabbitmq:
+    host: 123.56.120.185
+management:
+  endpoints:
+    web:
+      exposure:
+        include: bus-refresh

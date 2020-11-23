@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -24,12 +25,17 @@ public class LabelController {
     @Autowired
     private LabelService labelService;
 
+    @Autowired
+    private HttpServletRequest request;
+
     /**
      * 查询全部标签
      * @return
      */
     @RequestMapping(method = RequestMethod.GET)
     public ResultEntity findAll() {
+        String authorization = request.getHeader("Authorization1");
+        System.out.println("header:" + authorization);
         return new ResultEntity(StatusCode.OK, true, "查询成功", labelService.findAll());
     }
 
