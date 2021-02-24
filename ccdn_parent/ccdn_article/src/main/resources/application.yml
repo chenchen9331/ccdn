@@ -7,7 +7,7 @@ spring:
     driverClassName: com.mysql.jdbc.Driver
     url: jdbc:mysql://123.56.120.185:3306/ccdn_article?characterEncoding=UTF8
     username: root
-    password: 12345678
+    password: 
   jpa: 
     database: MySQL
     show-sql: true
