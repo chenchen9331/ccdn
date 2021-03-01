@@ -5,7 +5,7 @@ spring:
     name: ccdn-base
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://123.56.120.185:3306/ccdn_base?characterEncoding=utf-8
+    url: jdbc:mysql://127.0.0.1:3306/ccdn_base?characterEncoding=utf-8
     username: root
     password: 12345678
   jpa:
