@@ -6,6 +6,7 @@ import com.chenchen.common.entity.PageResultEntity;
 import com.chenchen.common.entity.ResultEntity;
 import com.chenchen.common.entity.StatusCode;
 import com.chenchen.common.util.JwtUtil;
+import main.java.com.chenchen.user.enums.LoginTypeEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -69,7 +70,7 @@ public class UserController {
 		}
 		String token = jwtUtil.createJWT(userLogin.getId(), userLogin.getNickname(), "user");
 
-		return new ResultEntity(StatusCode.OK, true, "登陆成功", token);
+		return new ResultEntity(StatusCode.OK, true, LoginTypeEnum.SUCCESS.getDescription(), token);
 	}
 
 	/**
